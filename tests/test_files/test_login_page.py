@@ -2,9 +2,9 @@ import allure
 import pytest
 from selenium import webdriver
 
-from PageObjects.login_page import LoginPage
-from PageObjects.forgot_password import ForgotPasswordPage
-from PageObjects.reset_password import ResetPasswordPage
+from pages.login_page import LoginPage
+from pages.forgot_password import ForgotPasswordPage
+from pages.reset_password import ResetPasswordPage
 from tests.config import *
 
 

@@ -2,9 +2,9 @@ import allure
 import pytest
 from selenium import webdriver
 
-from PageObjects.login_page import LoginPage
-from PageObjects.main_page import MainPage
-from PageObjects.profile_page import ProfilePage
+from pages.login_page import LoginPage
+from pages.main_page import MainPage
+from pages.profile_page import ProfilePage
 from config import LOGIN_URL, ORDER_HISTORY_URL
 from test_files.test_data import test_email, test_password
 

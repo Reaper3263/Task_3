@@ -1,22 +1,44 @@
 import pytest as pytest
 from selenium import webdriver
+from selenium.common import WebDriverException
+from selenium.webdriver.chrome.options import Options as ChromeOptions
+from selenium.webdriver.firefox.options import Options as FirefoxOptions
+from selenium.webdriver.support.wait import WebDriverWait
 
-from PageObjects.forgot_password import ForgotPasswordPage
-from PageObjects.main_page import MainPage
-from PageObjects.orders_list_page import OrdersListPage
-from PageObjects.profile_page import ProfilePage
-from PageObjects.reset_password import ResetPasswordPage
+from pages.forgot_password import ForgotPasswordPage
+from pages.main_page import MainPage
+from pages.orders_list_page import OrdersListPage
+from pages.profile_page import ProfilePage
+from pages.reset_password import ResetPasswordPage
 from config import MAIN_URL
 from test_files.test_data import test_email, test_password
-from tests.PageObjects.login_page import LoginPage
+from tests.pages.login_page import LoginPage
 
 
-@pytest.fixture(scope="function")
+@pytest.fixture(scope="function", params=["chrome", "firefox"])
 def setup_browser(request):
-    driver = webdriver.Chrome()
-    request.cls.driver = driver
+    browser_name = request.param
+
+    if browser_name == "chrome":
+        options = ChromeOptions()
+        options.add_argument("--start-maximized")
+        options.add_argument("--window-size=1920,1080")
+        driver = webdriver.Chrome(options=options)
+    elif browser_name == "firefox":
+        options = FirefoxOptions()
+        options.add_argument("--width=1920")
+        options.add_argument("--height=1080")
+        driver = webdriver.Firefox(options=options)
+    else:
+        raise ValueError(f"Неизвестный браузер: {browser_name}")
+
+    if request.cls is not None:
+        request.cls.driver = driver
+
     driver.get(MAIN_URL)
+
     yield driver
+
     driver.quit()
 
 

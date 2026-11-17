@@ -2,7 +2,7 @@ import allure
 import pytest
 from selenium import webdriver
 
-from PageObjects.main_page import MainPage
+from pages.main_page import MainPage
 from config import MAIN_URL, ORDERS_LIST_LINK
 
 
