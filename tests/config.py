@@ -1,0 +1,7 @@
+MAIN_URL = "https://qa-stellarburgers.education-services.ru/"
+LOGIN_URL = MAIN_URL + "login"
+FORGOT_PASSWORD_URL = MAIN_URL + "forgot-password"
+RESET_PASSWORD_URL = MAIN_URL + "reset-password"
+PROFILE_URL = MAIN_URL + "account/profile"
+ORDER_HISTORY_URL = MAIN_URL + "account/order-history"
+ORDERS_LIST_LINK = MAIN_URL + "feed"
